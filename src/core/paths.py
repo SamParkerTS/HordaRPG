@@ -1,55 +1,36 @@
-from pathlib import Path
 import os
-
-
-APP_NAME = "HordaRPG"
+from pathlib import Path
 
 
 class Paths:
 
     def __init__(self):
-        self.base_dir = self.get_user_data_dir()
 
-        self.grids = self.base_dir / "grids"
-        self.characters = self.base_dir / "characters"
-        self.books = self.base_dir / "books"
-        self.assets = self.base_dir / "assets"
-        self.config = self.base_dir / "config"
-        self.logs = self.base_dir / "logs"
+        # Diretório base do projeto
+        self.base_dir = Path.home() / "HordaRPG"
 
+        # Subdiretórios
+        self.config_dir = self.base_dir / "config"
+        self.grids_dir = self.base_dir / "grids"
+        self.characters_dir = self.base_dir / "characters"
+        self.books_dir = self.base_dir / "books"
+        self.assets_dir = self.base_dir / "assets"
+        self.logs_dir = self.base_dir / "logs"
+
+        # Criar diretórios
         self.create_directories()
 
-    def get_user_data_dir(self):
-        """
-        Retorna o diretório de dados do usuário dependendo do sistema.
-        """
-
-        home = Path.home()
-
-        if os.name == "nt":  # Windows
-            base = Path(os.getenv("LOCALAPPDATA")) / APP_NAME
-        else:  # Linux / Mac
-            base = home / f".{APP_NAME.lower()}"
-
-        return base
-
     def create_directories(self):
-        """
-        Cria as pastas caso não existam.
-        """
 
         directories = [
             self.base_dir,
-            self.grids,
-            self.characters,
-            self.books,
-            self.assets,
-            self.config,
-            self.logs
+            self.config_dir,
+            self.grids_dir,
+            self.characters_dir,
+            self.books_dir,
+            self.assets_dir,
+            self.logs_dir
         ]
 
         for directory in directories:
-            directory.mkdir(parents=True, exist_ok=True)
-
-
-paths = Paths()
+            os.makedirs(directory, exist_ok=True)
