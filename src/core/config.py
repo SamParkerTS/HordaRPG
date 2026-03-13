@@ -1,5 +1,6 @@
 import json
 import os
+from core.constants import DEFAULT_LANGUAGE, DEFAULT_THEME
 
 
 class Config:
@@ -32,8 +33,8 @@ class Config:
         """
 
         default_config = {
-            "language": "pt-BR",
-            "theme": "dark",
+            "language": DEFAULT_LANGUAGE,
+            "theme": DEFAULT_THEME,
             "auto_update": True
         }
 

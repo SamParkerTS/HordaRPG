@@ -6,14 +6,9 @@ from PySide6.QtWidgets import QApplication
 
 from core.paths import Paths
 from ui.main_window import MainWindow
-
+from core.file_manager import FileManager
 
 class Application:
-    def __init__(self):
-        """
-        Núcleo da aplicação.
-        Responsável por inicializar sistemas essenciais.
-        """
 
     def __init__(self):
 
@@ -23,11 +18,11 @@ class Application:
 
         self.logger = Logger(self.paths).get_logger()
 
+        self.file_manager = FileManager(self.paths, self.logger)
+
         self.qt_app = QApplication(sys.argv)
 
         self.main_window = MainWindow()
-
-        self.logger.info("Aplicação inicializada.")
 
     def run(self):
         """
